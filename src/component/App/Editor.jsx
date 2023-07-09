@@ -1,6 +1,7 @@
 "use client"; //
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import { DashboardTemplate } from "../Template/DashboardTemplate";
 import { Note } from "./Note";
 import { notes } from "@/lib/dummy/notes";
@@ -18,12 +19,22 @@ export const Editor = () => {
       color: color,
     });
     setNotesData(newNotesData);
+    localStorage.setItem("notes", JSON.stringify(newNotesData));
+    console.log(newNotesData)
+    
   };
-
+  useEffect(() => {
+    const data = localStorage.getItem("notes");
+    if (data) {
+      const jsonData = JSON.parse(data);
+      setNotesData(jsonData);
+    }
+  }, []);
   return (
     <DashboardTemplate
       onNewNotes={(color) => createNote(color)}
       onSearchChange={(text) => setSearchText(text)}
+      
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {notesData
@@ -31,11 +42,18 @@ export const Editor = () => {
             const body = item.body.toLocaleLowerCase();
             const search = searchText.toLocaleLowerCase();
             return body.includes(search);
+            
           })
           .map(({ id, body, color }) => {
             return <Note key={id} body={body} color={color} />;
+            
           })}
+          
       </div>
+      
+      
     </DashboardTemplate>
+    
   );
+  
 };

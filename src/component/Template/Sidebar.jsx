@@ -1,8 +1,10 @@
 "use client"; //
 
-import { Book } from "lucide-react";
+import { notes } from "@/lib/dummy/notes";
+import { Book, Delete, Eraser } from "lucide-react";
 import { useState } from "react";
 import { ReactSpoiler } from 'react-simple-spoiler';
+import { Notelist } from "../Learning/Notelist";
 
 
 export const Sidebar = ({ onNewNotes }) => {
@@ -72,12 +74,17 @@ export const Sidebar = ({ onNewNotes }) => {
               onAddMode
                 ? "bg-cyan-800 w-5 h-5 rounded-full translate-y-4 transition duration-300 cursor-pointer"
                 : "bg-cyan-800 w-5 h-5 rounded-full -translate-y-16 -z-10 transition duration-300 cursor-pointer"
-            }
+            
+              }
+              
           ></div>
+         
         </div>
         
 </ReactSpoiler>
 </div>
+      <button onClick={() => onNewNotes("#5d8aa8")}>notes AirForce blue
+      </button>
       
     </aside>
     );

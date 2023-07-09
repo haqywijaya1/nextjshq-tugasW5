@@ -23,6 +23,26 @@ export const Notelist = () => {
         </div>
       </div>
       <CreateNote createNewNote={addData} />
+      
     </div>
+    
   );
+  // Menyimpan data ke LocalStorage
+localStorage.setItem("note baru");
+localStorage.setItem("umur", "25");
+
+// Mendapatkan data dari LocalStorage
+var nama = localStorage.getItem("nama");
+var umur = localStorage.getItem("umur");
+
+console.log(nama); // Output: John
+console.log(umur); // Output: 25
+
+// Menghapus data dari LocalStorage
+localStorage.removeItem("nama");
+
+// Membersihkan semua data dalam LocalStorage
+localStorage.clear();
+
+
 };
